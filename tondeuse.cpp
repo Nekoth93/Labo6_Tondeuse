@@ -1,10 +1,10 @@
 
-#include <stdlib.h>
-#include <time.h>
-#include <stdio.h>
+#include <cstdlib>
+#include <ctime>
+#include <cstdio>
 #include "tondeuse.h"
 
-bool random();
+int random();
 
 void nouvellePos(Tondeuse& t,const Terrain& terrain);
 
@@ -19,9 +19,13 @@ void nouvellePos(Tondeuse& t,const Terrain& terrain) {
 
 }
 
-bool random() {
-   srand(time(NULL));
+int random() {
+   static bool first = true;
+   if (first) {
+      srand ((unsigned)time (NULL));
+      first = false;
+   }
 
-   return rand()%1;
+   return rand()%2;
 
 }

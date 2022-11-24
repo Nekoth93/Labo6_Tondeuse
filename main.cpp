@@ -44,10 +44,6 @@ int main(){
    // - '~' : herbe haute
    // - '.' : herbe coupée
    //---------------------------------------------------------------------------
-
-   char L = 'L';
-   char X = 'X';
-   char H = '~';
                       //                    1                   2
                       //0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8
    Terrain terrain = { {L,L,L,L,L,L,L,L,L,L,L,L,L,L,L,L,L,L,L,L,L,L,L,L,L,X,X,X,X},  //  0

@@ -10,6 +10,10 @@
 typedef std::vector<std::string> Lignes;
 typedef std::vector<Lignes> Terrain;
 
+const char L = '#';
+const char X = 'X';
+const char H = '~';
+
 
 
 
