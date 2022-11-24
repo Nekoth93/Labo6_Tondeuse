@@ -17,9 +17,9 @@ bool estNouvellePosValide(Tondeuse& t, const Terrain& terrain);
 void tondre(Terrain& terrain, Tondeuse& tondeuse, int pasMax, const bool affichParPas);
 
 void tondre(Terrain& terrain, Tondeuse& tondeuse, int pasMax, const bool affichParPas) {
-    size_t posXTondeuse = tondeuse.at(0);
-    size_t posYTondeuse = tondeuse.at(1);
-    terrain.at(posXTondeuse).at(posYTondeuse) = T;
+    int posXTondeuse = tondeuse.at(0);
+    int posYTondeuse = tondeuse.at(1);
+    terrain.at((size_t)posXTondeuse).at((size_t)posYTondeuse) = T;
     afficherTerrain(terrain);
 
     for (int nbPas = 0; nbPas < pasMax; ++nbPas) {
@@ -36,28 +36,33 @@ void tondre(Terrain& terrain, Tondeuse& tondeuse, int pasMax, const bool affichP
 }
 
 bool estNouvellePosValide(Tondeuse& t, const Terrain& terrain) {
-    static const int MAXALEA = 2;
-    bool choix = genererIntAleatoire(MAXALEA);
+    static const int MAX_ALEA = 2;
+    bool choix = genererIntAleatoire(MAX_ALEA);
     // Si choix = 0, on fait un déplacement vertical. Si 1, horizontale.
     if (choix) {
-        choix = genererIntAleatoire(MAXALEA);
+        choix = genererIntAleatoire(MAX_ALEA);
         // Si 0 on va à gauche, si 1, à droite.
-        if (choix and terrain.at((size_t)t.at(0) + 1).at((size_t)t.at(1)) == H) {
+        if (choix and
+           (terrain.at((size_t)t.at(0) + 1).at((size_t)t.at(1)) == H or
+            terrain.at((size_t)t.at(0) + 1).at((size_t)t.at(1)) == T)) {
             t.at(0) += 1;
             return true;
-        } else if (terrain.at((size_t)t.at(0) - 1).at((size_t)t.at(1)) == H) {
+        } else if (terrain.at((size_t)t.at(0) + 1).at((size_t)t.at(1)) == H or
+                   terrain.at((size_t)t.at(0) + 1).at((size_t)t.at(1)) == T) {
             t.at(0) -= 1;
             return true;
         } else {
             return false;
         }
     } else {
-        choix = genererIntAleatoire(MAXALEA);
+        choix = genererIntAleatoire(MAX_ALEA);
         // Si 0 on va à monte, si 1, on descend.
-        if (choix and terrain.at((size_t)t.at(0)).at((size_t)t.at(1) + 1) == H) {
+        if (choix and (terrain.at((size_t)t.at(0) + 1).at((size_t)t.at(1)) == H or
+                       terrain.at((size_t)t.at(0) + 1).at((size_t)t.at(1)) == T)) {
             t.at(1) += 1;
             return true;
-        } else if (terrain.at((size_t)t.at(0)).at((size_t)t.at(1) - 1) == H) {
+        } else if (terrain.at((size_t)t.at(0) + 1).at((size_t)t.at(1)) == H or
+                   terrain.at((size_t)t.at(0) + 1).at((size_t)t.at(1)) == T) {
             t.at(1) -= 1;
             return true;
         } else {
