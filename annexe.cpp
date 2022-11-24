@@ -9,6 +9,8 @@
 //---------------------------------------------------------
 #include "annexe.h"
 
+#include <stdlib.h>
+
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -21,6 +23,7 @@ using namespace std;
 ostream& operator<<(ostream& os, const Terrain& terrain);
 ostream& operator<<(ostream& os, const Lignes& ligne);
 int genererIntAleatoire(const int valMax);
+void afficherTerrain(const Terrain& terrain);
 
 //-------------------------------------------------------------
 // Initialisation des fonctions
@@ -35,16 +38,14 @@ int genererIntAleatoire(const int valMax) {
     return rand() % valMax;
 }
 
-void afficherTerrain(const Terrain& terrain, bool afficherPas) {
-    if (afficherPas) {
+void afficherTerrain(const Terrain& terrain) {
 #if defined(__linux__)  // Or #if __linux__
-        system("clear");
+    system("clear");
 #elif _WIN32
-        system("cls");
+    system("CLS");
 #else
-        system("clear");
+    system("clear");
 #endif
-    }
     cout << terrain;
 }
 

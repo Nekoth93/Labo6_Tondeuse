@@ -21,6 +21,6 @@ const char H = '~';
 const char T = '.';
 
 int genererIntAleatoire(const int valMax);
-void afficherTerrain(const Terrain& terrain, bool afficherPas);
+void afficherTerrain(const Terrain& terrain);
 
 #endif  // LABO6_TONDEUSE_ANNEXE_H

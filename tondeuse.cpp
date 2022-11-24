@@ -17,18 +17,22 @@ bool estNouvellePosValide(Tondeuse& t, const Terrain& terrain);
 void tondre(Terrain& terrain, Tondeuse& tondeuse, int pasMax, const bool affichParPas);
 
 void tondre(Terrain& terrain, Tondeuse& tondeuse, int pasMax, const bool affichParPas) {
-    int posXTondeuse = tondeuse.at(0);
-    int posYTondeuse = tondeuse.at(1);
-    terrain.at((size_t)posXTondeuse).at((size_t)posYTondeuse) = T;
+    size_t posXTondeuse = tondeuse.at(0);
+    size_t posYTondeuse = tondeuse.at(1);
+    terrain.at(posXTondeuse).at(posYTondeuse) = T;
+    afficherTerrain(terrain);
 
     for (int nbPas = 0; nbPas < pasMax; ++nbPas) {
         if (estNouvellePosValide(tondeuse, terrain)) {
             terrain.at((size_t)tondeuse.at(0)).at((size_t)tondeuse.at(1)) = T;
-            afficherTerrain(terrain, affichParPas);
+            if (affichParPas) {
+                afficherTerrain(terrain);
+            }
             continue;
         }
         --nbPas;
     }
+    afficherTerrain(terrain);
 }
 
 bool estNouvellePosValide(Tondeuse& t, const Terrain& terrain) {
