@@ -18,11 +18,11 @@ bool nouvellePos(Tondeuse& t, const Terrain& terrain);
 void tondre(Terrain& terrain, Tondeuse& tondeuse, int pasMax, const bool affichParPas) {
     int posXTondeuse = tondeuse.at(0);
     int posYTondeuse = tondeuse.at(1);
-    terrain.at(posXTondeuse).at(posYTondeuse) = T;
+    terrain.at((size_t)posXTondeuse).at((size_t)posYTondeuse) = T;
 
     for (int nbPas = 0; nbPas < pasMax; ++nbPas) {
-        if (nouvellePos) {
-            terrain.at(tondeuse.at(0)).at(tondeuse.at(1)) = T;
+        if (nouvellePos(tondeuse, terrain)) {
+            terrain.at((size_t)tondeuse.at(0)).at((size_t)tondeuse.at(1)) = T;
             afficherTerrain(terrain, affichParPas);
             continue;
         }
@@ -36,26 +36,26 @@ bool nouvellePos(Tondeuse& t, const Terrain& terrain) {
     if (choix) {
         choix = aleatoire();
         // Si 0 on va à gauche, si 1, à droite.
-        if (choix and terrain.at(t.at(0) + 1).at(t.at(1)) == H) {
+        if (choix and terrain.at((size_t)t.at(0) + 1).at((size_t)t.at(1)) == H) {
             t.at(0) += 1;
-            return 1;
-        } else if (terrain.at(t.at(0) - 1).at(t.at(1)) == H) {
+            return true;
+        } else if (terrain.at((size_t)t.at(0) - 1).at((size_t)t.at(1)) == H) {
             t.at(0) -= 1;
-            return 1;
+            return true;
         } else {
-            return 0;
+            return false;
         }
     } else {
         choix = aleatoire();
         // Si 0 on va à monte, si 1, on descend.
-        if (choix and terrain.at(t.at(0)).at(t.at(1) + 1) == H) {
+        if (choix and terrain.at((size_t)t.at(0)).at((size_t)t.at(1) + 1) == H) {
             t.at(1) += 1;
-            return 1;
-        } else if (terrain.at(t.at(0)).at(t.at(1) - 1) == H) {
+            return true;
+        } else if (terrain.at((size_t)t.at(0)).at((size_t)t.at(1) - 1) == H) {
             t.at(1) -= 1;
-            return 1;
+            return true;
         } else {
-            return 0;
+            return false;
         }
     }
 }
