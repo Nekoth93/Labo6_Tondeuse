@@ -20,8 +20,7 @@ using namespace std;
 //-------------------------------------------------------------
 ostream& operator<<(ostream& os, const Terrain& terrain);
 ostream& operator<<(ostream& os, const Lignes& ligne);
-void afficherTerrain(const Terrain& terrain, bool afficherPas);
-int aleatoire();
+int genererIntAleatoire(const int valMax);
 
 //-------------------------------------------------------------
 // Initialisation des fonctions
