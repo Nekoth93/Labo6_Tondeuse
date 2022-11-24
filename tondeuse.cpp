@@ -22,7 +22,7 @@ void tondre(Terrain& terrain, Tondeuse& tondeuse, int pasMax, const bool affichP
     terrain.at(posXTondeuse).at(posYTondeuse) = T;
 
     for (int nbPas = 0; nbPas < pasMax; ++nbPas) {
-        if (estNouvellePosValide) {
+        if (estNouvellePosValide(tondeuse, terrain)) {
             terrain.at(tondeuse.at(0)).at(tondeuse.at(1)) = T;
             afficherTerrain(terrain, affichParPas);
             continue;
