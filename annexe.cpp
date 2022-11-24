@@ -21,7 +21,7 @@ using namespace std;
 ostream& operator<<(ostream& os, const Terrain& terrain);
 ostream& operator<<(ostream& os, const Lignes& ligne);
 void afficherTerrain(const Terrain& terrain, bool afficherPas);
-int aleatoire();
+int genererIntAleatoire();
 
 //-------------------------------------------------------------
 // Initialisation des fonctions
@@ -53,13 +53,12 @@ void afficherTerrain(const Terrain& terrain, bool afficherPas) {
 // Initialisation des Opérateurs
 //-------------------------------------------------------------
 ostream& operator<<(ostream& os, const Lignes& ligne) {
-    os << "[";
     for (size_t i = 0; i < ligne.size(); ++i) {
         if (i)
-            os << ", ";
+            os << " ";
         os << ligne[i];
     }
-    return os << "]";
+    return os;
 }
 
 ostream& operator<<(ostream& os, const Terrain& terrain) {

@@ -9,7 +9,6 @@
                 "-g",
                 "${fileDirname}\\**.cpp",
                 "${fileDirname}\\**.h",
-                "main.cpp",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
