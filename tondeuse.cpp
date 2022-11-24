@@ -13,7 +13,8 @@
 
 using namespace std;
 
-bool nouvellePos(Tondeuse& t, const Terrain& terrain);
+bool estNouvellePosValide(Tondeuse& t, const Terrain& terrain);
+void tondre(Terrain& terrain, Tondeuse& tondeuse, int pasMax, const bool affichParPas);
 
 void tondre(Terrain& terrain, Tondeuse& tondeuse, int pasMax, const bool affichParPas) {
     int posXTondeuse = tondeuse.at(0);
@@ -21,7 +22,7 @@ void tondre(Terrain& terrain, Tondeuse& tondeuse, int pasMax, const bool affichP
     terrain.at(posXTondeuse).at(posYTondeuse) = T;
 
     for (int nbPas = 0; nbPas < pasMax; ++nbPas) {
-        if (nouvellePos) {
+        if (estNouvellePosValide) {
             terrain.at(tondeuse.at(0)).at(tondeuse.at(1)) = T;
             afficherTerrain(terrain, affichParPas);
             continue;
@@ -30,11 +31,12 @@ void tondre(Terrain& terrain, Tondeuse& tondeuse, int pasMax, const bool affichP
     }
 }
 
-bool nouvellePos(Tondeuse& t, const Terrain& terrain) {
-    bool choix = aleatoire();
+bool estNouvellePosValide(Tondeuse& t, const Terrain& terrain) {
+    static const int MAXALEA = 2;
+    bool choix = genererIntAleatoire(MAXALEA);
     // Si choix = 0, on fait un déplacement vertical. Si 1, horizontale.
     if (choix) {
-        choix = aleatoire();
+        choix = genererIntAleatoire(MAXALEA);
         // Si 0 on va à gauche, si 1, à droite.
         if (choix and terrain.at(t.at(0) + 1).at(t.at(1)) == H) {
             t.at(0) += 1;
@@ -46,7 +48,7 @@ bool nouvellePos(Tondeuse& t, const Terrain& terrain) {
             return 0;
         }
     } else {
-        choix = aleatoire();
+        choix = genererIntAleatoire(MAXALEA);
         // Si 0 on va à monte, si 1, on descend.
         if (choix and terrain.at(t.at(0)).at(t.at(1) + 1) == H) {
             t.at(1) += 1;

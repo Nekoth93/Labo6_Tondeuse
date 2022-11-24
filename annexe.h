@@ -3,8 +3,8 @@
 // Fichier          : annexe.h
 // Auteur(s)        : CARBONARA Nicolas, DELÉTRAZ, Alexandre
 // Date de création : 2022-11-24
-// But              :
-// Modifications    :
+// But              : -
+// Modifications    : -
 // Remarque(s)      : -
 //---------------------------------------------------------
 #ifndef LABO6_TONDEUSE_ANNEXE_H
@@ -20,7 +20,7 @@ const char X = 'X';
 const char H = '~';
 const char T = '.';
 
-int aleatoire();
+int genererIntAleatoire(const int valMax);
 void afficherTerrain(const Terrain& terrain, bool afficherPas);
 
 #endif  // LABO6_TONDEUSE_ANNEXE_H
