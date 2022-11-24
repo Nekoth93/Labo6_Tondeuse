@@ -1,10 +1,10 @@
 
-#include <cstdlib>
-#include <ctime>
-#include <cstdio>
-#include "tondeuse.h"
 
-int random();
+#include "tondeuse.h"
+#include "annexe.h"
+
+using namespace std;
+
 
 void nouvellePos(Tondeuse& t,const Terrain& terrain);
 
@@ -17,15 +17,27 @@ affichParPas) {
 
 void nouvellePos(Tondeuse& t,const Terrain& terrain) {
 
-}
-
-int random() {
-   static bool first = true;
-   if (first) {
-      srand ((unsigned)time (NULL));
-      first = false;
+   bool choix = aleatoire();
+   // Si choix = 0, on fait un déplacement vertical. Si 1, horizontale.
+   if (choix) {
+      choix = aleatoire();
+      // Si 0 on va à gauche, si 1, à droite.
+      if (choix) {
+         t.at(0) += 1;
+      }
+      else {
+         t.at(0) -= 1;
+      }
    }
-
-   return rand()%2;
+   else {
+      choix = aleatoire();
+      // Si 0 on va à monte, si 1, on descend.
+      if(choix) {
+         t.at(1) += 1;
+      }
+      else {
+         t.at(1) -= 1;
+      }
+   }
 
 }

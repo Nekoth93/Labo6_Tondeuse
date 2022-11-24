@@ -5,16 +5,17 @@
 #ifndef LABO6_TONDEUSE_ANNEXE_H
 #define LABO6_TONDEUSE_ANNEXE_H
 
-#include <string>
+#include <vector>
 
-typedef std::vector<std::string> Lignes;
-typedef std::vector<Lignes> Terrain;
+
+using Lignes = std::vector<char>;
+using Terrain = std::vector<Lignes>;
 
 const char L = '#';
 const char X = 'X';
 const char H = '~';
 
-
+int aleatoire();
 
 
 #endif //LABO6_TONDEUSE_ANNEXE_H
