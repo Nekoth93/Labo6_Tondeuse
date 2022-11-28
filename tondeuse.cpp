@@ -14,7 +14,6 @@
 using namespace std;
 
 bool estNouvellePosValide(Tondeuse& t, const Terrain& terrain);
-void tondre(Terrain& terrain, Tondeuse& tondeuse, int pasMax, const bool affichParPas);
 
 void tondre(Terrain& terrain, Tondeuse& tondeuse, int pasMax, const bool affichParPas) {
     int* ptrPosXTondeuse = &tondeuse.at(0);

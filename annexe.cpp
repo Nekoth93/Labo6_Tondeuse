@@ -9,8 +9,6 @@
 //---------------------------------------------------------
 #include "annexe.h"
 
-#include <stdlib.h>
-
 #include <cstdlib>
 #include <iostream>
 #include <thread>
@@ -22,8 +20,6 @@ using namespace std;
 //-------------------------------------------------------------
 ostream& operator<<(ostream& os, const Terrain& terrain);
 ostream& operator<<(ostream& os, const Lignes& ligne);
-int genererIntAleatoire(const int valMax);
-void afficherTerrain(const Terrain& terrain);
 
 //-------------------------------------------------------------
 // Initialisation des fonctions
