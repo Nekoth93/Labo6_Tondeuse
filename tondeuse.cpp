@@ -16,15 +16,15 @@ using namespace std;
 bool estNouvellePosValide(Tondeuse& t, const Terrain& terrain);
 
 void tondre(Terrain& terrain, Tondeuse& tondeuse, int pasMax, const bool affichParPas) {
-    int& ptrPosXTondeuse = tondeuse.at(0);
-    int& ptrPosYTondeuse = tondeuse.at(1);
+    int& posXTondeuse = tondeuse.at(0);
+    int& posYTondeuse = tondeuse.at(1);
 
-    terrain.at(ptrPosXTondeuse).at(ptrPosYTondeuse) = T;
+    terrain.at(posXTondeuse).at(posYTondeuse) = T;
     afficherTerrain(terrain);
 
     for (int nbPas = 0; nbPas < pasMax; ++nbPas) {
         if (estNouvellePosValide(tondeuse, terrain)) {
-            terrain.at(ptrPosXTondeuse).at(ptrPosYTondeuse) = T;
+            terrain.at(posXTondeuse).at(posYTondeuse) = T;
             if (affichParPas) {
                 afficherTerrain(terrain);
             }
