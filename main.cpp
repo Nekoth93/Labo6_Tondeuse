@@ -79,8 +79,9 @@ int main() {
     // tondre => n déplacements aléatoires
     tondre(terrain,   // terrain de travail
            tondeuse,  // tondeuse
-           10,    // nbre de pas
+           10000,     // nbre de pas
            true);     // afficher à chaque pas
 
+    system("PAUSE");
     return EXIT_SUCCESS;
 }

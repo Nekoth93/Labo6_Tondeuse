@@ -12,8 +12,8 @@
 #include <stdlib.h>
 
 #include <cstdlib>
-#include <ctime>
 #include <iostream>
+#include <thread>
 
 using namespace std;
 
@@ -47,6 +47,7 @@ void afficherTerrain(const Terrain& terrain) {
     system("clear");
 #endif
     cout << terrain;
+    this_thread::sleep_for(100ms);
 }
 
 //-------------------------------------------------------------
