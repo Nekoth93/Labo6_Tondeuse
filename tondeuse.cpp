@@ -46,7 +46,7 @@ bool estNouvellePosValide(int& posXTondeuse, int& posYTondeuse, const Terrain& t
             posXTondeuse += 1;
             return true;
         } else if (terrain.at((size_t)posXTondeuse - 1).at((size_t)posYTondeuse) == H or
-                   terrain.at((size_t)posXTondeuse - 1).at((size_t)posYTondeuse == T)) {
+                   terrain.at((size_t)posXTondeuse - 1).at((size_t)posYTondeuse) == T) {
             posXTondeuse -= 1;
             return true;
         } else {
