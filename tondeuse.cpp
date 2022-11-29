@@ -13,17 +13,17 @@
 
 using namespace std;
 
-bool estNouvellePosValide(Tondeuse& t, const Terrain& terrain);
+bool estNouvellePosValide(int& posXTondeuse, int& posYTondeuse, const Terrain& terrain);
 
 void tondre(Terrain& terrain, Tondeuse& tondeuse, int pasMax, const bool affichParPas) {
     int& posXTondeuse = tondeuse.at(0);
     int& posYTondeuse = tondeuse.at(1);
 
-    terrain.at(posXTondeuse).at(posYTondeuse) = T;
+    terrain.at(size_t(posXTondeuse)).at(size_t(posYTondeuse)) = T;
     afficherTerrain(terrain);
 
     for (int nbPas = 0; nbPas < pasMax; ++nbPas) {
-        if (estNouvellePosValide(tondeuse, terrain)) {
+        if (estNouvellePosValide(posXTondeuse, posYTondeuse, terrain)) {
             terrain.at(posXTondeuse).at(posYTondeuse) = T;
             if (affichParPas) {
                 afficherTerrain(terrain);
@@ -33,7 +33,7 @@ void tondre(Terrain& terrain, Tondeuse& tondeuse, int pasMax, const bool affichP
     afficherTerrain(terrain);
 }
 
-bool estNouvellePosValide(Tondeuse& t, const Terrain& terrain) {
+bool estNouvellePosValide(int& posXTondeuse, int& posYTondeuse, const Terrain& terrain) {
     static const int MAX_ALEA = 2;
     bool choix = genererIntAleatoire(MAX_ALEA);
     // Si choix = 0, on fait un déplacement vertical. Si 1, horizontale.
@@ -41,13 +41,13 @@ bool estNouvellePosValide(Tondeuse& t, const Terrain& terrain) {
         choix = genererIntAleatoire(MAX_ALEA);
         // Si 0 on va à gauche, si 1, à droite.
         if (choix and
-            (terrain.at((size_t)t.at(0) + 1).at((size_t)t.at(1)) == H or
-             terrain.at((size_t)t.at(0) + 1).at((size_t)t.at(1)) == T)) {
-            t.at(0) += 1;
+            (terrain.at(size_t(posXTondeuse + 1)).at(size_t(posYTondeuse)) == H or
+             terrain.at(size_t(posXTondeuse + 1)).at(size_t(posYTondeuse)) == T)) {
+            posXTondeuse += 1;
             return true;
-        } else if (terrain.at((size_t)t.at(0) - 1).at((size_t)t.at(1)) == H or
-                   terrain.at((size_t)t.at(0) - 1).at((size_t)t.at(1)) == T) {
-            t.at(0) -= 1;
+        } else if (terrain.at(size_t(posXTondeuse - 1)).at(size_t(posYTondeuse)) == H or
+                   terrain.at(size_t(posXTondeuse - 1)).at(size_t(posYTondeuse) == T)) {
+            posXTondeuse -= 1;
             return true;
         } else {
             return false;
@@ -55,13 +55,13 @@ bool estNouvellePosValide(Tondeuse& t, const Terrain& terrain) {
     } else {
         choix = genererIntAleatoire(MAX_ALEA);
         // Si 0 on va à monte, si 1, on descend.
-        if (choix and (terrain.at((size_t)t.at(0)).at((size_t)t.at(1) + 1) == H or
-                       terrain.at((size_t)t.at(0)).at((size_t)t.at(1) + 1) == T)) {
-            t.at(1) += 1;
+        if (choix and (terrain.at(size_t(posXTondeuse)).at(size_t(posYTondeuse + 1)) == H or
+                       terrain.at(size_t(posXTondeuse)).at(size_t(posYTondeuse + 1)) == T)) {
+            posYTondeuse += 1;
             return true;
-        } else if (terrain.at((size_t)t.at(0)).at((size_t)t.at(1) - 1) == H or
-                   terrain.at((size_t)t.at(0)).at((size_t)t.at(1) - 1) == T) {
-            t.at(1) -= 1;
+        } else if (terrain.at(size_t(posXTondeuse)).at(size_t(posYTondeuse - 1)) == H or
+                   terrain.at(size_t(posXTondeuse)).at(size_t(posYTondeuse - 1)) == T) {
+            posYTondeuse -= 1;
             return true;
         } else {
             return false;
